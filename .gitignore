@@ -1,0 +1,12 @@
+# eclipse files
+.project
+.settings/
+.classpath
+
+target/
+
+# Logs
+open_chord.log.html
+
+# Ignore Mac DS_Store files
+.DS_Store
