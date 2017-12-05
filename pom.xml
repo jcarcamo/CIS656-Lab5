@@ -9,6 +9,7 @@
   <url>http://maven.apache.org</url>
 
   <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.target>1.8</maven.compiler.target>
     <maven.compiler.source>1.8</maven.compiler.source>
   </properties>
@@ -50,7 +51,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>edu.gvsu.cis.cis656.client.ChordClient</mainClass>
+            <mainClass>edu.gvsu.cis.cis656.client.App</mainClass>
           </manifest>
         </archive>
         <descriptorRefs>

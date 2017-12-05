@@ -83,6 +83,9 @@ public class App {
 	                	System.out.println("Sending Message to " + lineArray[1]);
 	                	friend = openchordClient.lookup(lineArray[1]);
 	                	if(friend != null && friend.getStatus() == true){
+	                		if(friend.getName().equalsIgnoreCase(myself.getName())){
+	                			System.out.println("Funny that you're talking to yourself, but we allow that ;)");
+	                		}
 	                		message = Utils.stringFromArray(2, lineArray);
 	                		message = "(DM) " + myself.getName() + " says: " + message;
 	                		new Thread(new MessageSenderService(friend.getHost(), friend.getPort(), message)).start();
@@ -95,20 +98,26 @@ public class App {
                 	
                 	break;
                 case "busy":
-                	myself.setStatus(false);
-                    openchordClient.updateRegistrationInfo(myself);
-                    System.out.println("Your status is now busy");
+                	if(myself.getStatus()){
+                		System.out.println("Your are busy now");
+                		myself.setStatus(false);
+                        openchordClient.updateRegistrationInfo(myself);
+                	}else{
+                		System.out.println("No action taken, you were already busy");
+                	}
                 	break;
                 case "available":
-                	myself.setStatus(true);
-                    openchordClient.updateRegistrationInfo(myself);
-                    System.out.println("Your status is now available");
-                	break;
+                	if(!myself.getStatus()){
+	                    System.out.println("Your are available now");
+	                    myself.setStatus(true);
+	                    openchordClient.updateRegistrationInfo(myself);
+                	}else{
+                		System.out.println("No action taken, you were already available");
+                	}
+                    break;
                 case "help":
                     System.out.println("Here's a list of commands:");
-                    System.out.println("friends: List all your connected friends");
                     System.out.println("talk {name} {message}: Sends a message to your friend if available");
-                    System.out.println("broadcast {message}: Sends a message to all your available friends");
                     System.out.println("busy: Sets your status to busy");
                     System.out.println("available: Sets your status to available");
                     System.out.println("exit: Close the Chat App");

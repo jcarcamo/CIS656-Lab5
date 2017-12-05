@@ -30,3 +30,4 @@ To run a chat client after building enter the following commands:
 ```bash
 cd target
 java -jar openchord-chat-client-1.0-SNAPSHOT-jar-with-dependencies.jar -notmaster username localhost
+```
